@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TalkToMe' target in the 'TalkToMe' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

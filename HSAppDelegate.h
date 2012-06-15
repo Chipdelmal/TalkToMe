@@ -8,7 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HSAppDelegate : NSObject <NSApplicationDelegate>
+@interface HSAppDelegate : NSObject <NSApplicationDelegate>{
+    NSString *desktopPath;
+    NSSpeechSynthesizer *speechSynth;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 

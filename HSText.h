@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HSText : NSObject
+@interface HSText : NSObject{
+    NSString *textString;
+}
+-(id)init;
+-(id)initWithString:(NSString *)initializerString;
+
+@property (strong, readonly) NSString *textString;
 
 @end

@@ -8,12 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HSTalkingFunctions.h"
+#import "HSTalker.h"
 
 @interface HSAppDelegate : NSObject <NSApplicationDelegate>{
-    int j;
     NSString *desktopPath;
-    NSArray *wordsArray;
-    NSSpeechSynthesizer *speechSynth;
 }
 
 -(IBAction)HSProcessText:(id)sender;

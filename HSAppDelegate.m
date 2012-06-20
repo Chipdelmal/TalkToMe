@@ -26,11 +26,15 @@
     
     [InputFilePathTextField setStringValue:[desktopPath stringByAppendingFormat:@"/1984.txt"]];
     [OutputFilesNameTextField setStringValue:@"1984"];
+    [TimePerFileTextField setIntValue:10];
 }
 
 -(IBAction)HSProcessText:(id)sender{
     NSString *sourcePath = [InputFilePathTextField stringValue];
-    HSTalker *talker = [[HSTalker alloc] initWithContentsOfFile:sourcePath andOutputFileName:[OutputFilesNameTextField stringValue]];
+    HSTalker *talker = [[HSTalker alloc] initWithContentsOfFile:sourcePath 
+                                              andOutputFileName:[OutputFilesNameTextField stringValue] 
+                                                  andSpeechRate:[SpeechRateSlider intValue] 
+                                              andMinutesPerFile:[TimePerFileTextField intValue]];
     [talker startProcessing];
 }
 

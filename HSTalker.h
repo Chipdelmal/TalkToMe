@@ -14,13 +14,14 @@
     int numberOfCycles;
     int numberOfWords;
     NSString *desktopPath;
+    NSString *folderPath;
     NSString *outputFileName;
     NSArray *wordsArray;
     NSSpeechSynthesizer *speechSynth;
 }
 
 -(id)init;
--(id)initWithContentsOfFile:(NSString *)filePath andOutputFileName:(NSString *)fileName;
+-(id)initWithContentsOfFile:(NSString *)filePath andOutputFileName:(NSString *)fileName andSpeechRate:(int)speechRate andMinutesPerFile:(int)minutesPerFile;
 
 -(void)startProcessing;
 

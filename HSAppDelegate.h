@@ -12,6 +12,9 @@
 
 @interface HSAppDelegate : NSObject <NSApplicationDelegate>{
     NSString *desktopPath;
+    NSSpeechSynthesizer *speechSynthesizer;
+    HSTalker *talker;
+    NSArray *voiceList;
 }
 
 -(IBAction)HSProcessText:(id)sender;
@@ -25,5 +28,6 @@
 @property (weak) IBOutlet NSButton *SynthesizeButton;
 @property (weak) IBOutlet NSTextField *MessagesLabel;
 @property (weak) IBOutlet NSProgressIndicator *ProcessingIndicator;
+@property (weak) IBOutlet NSTableView *VoicesTable;
 
 @end

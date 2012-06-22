@@ -21,8 +21,9 @@
 }
 
 -(id)init;
--(id)initWithContentsOfFile:(NSString *)filePath andOutputFileName:(NSString *)fileName andSpeechRate:(int)speechRate andMinutesPerFile:(int)minutesPerFile;
+-(id)initWithContentsOfFile:(NSString *)filePath andOutputFileName:(NSString *)fileName andSpeechRate:(int)speechRate andMinutesPerFile:(int)minutesPerFile andSpeechSynthesizer:(NSSpeechSynthesizer *)speechSynthesizer;
 
 -(void)startProcessing;
+-(void)synthesizeFiles;
 
 @end

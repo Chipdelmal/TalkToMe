@@ -11,15 +11,16 @@
 @implementation HSTalker
 
 -(id)init{
-    return [self initWithContentsOfFile:NULL andOutputFileName:NULL andSpeechRate:0 andMinutesPerFile:0];
+    return [self initWithContentsOfFile:NULL andOutputFileName:NULL andSpeechRate:0 andMinutesPerFile:0 andSpeechSynthesizer:NULL];
 }
--(id)initWithContentsOfFile:(NSString *)filePath andOutputFileName:(NSString *)fileName andSpeechRate:(int)speechRate andMinutesPerFile:(int)minutesPerFile{
+-(id)initWithContentsOfFile:(NSString *)filePath andOutputFileName:(NSString *)fileName andSpeechRate:(int)speechRate andMinutesPerFile:(int)minutesPerFile andSpeechSynthesizer:(NSSpeechSynthesizer *)speechSynthesizer{
     self = [super init];
     if(self){
         /*Initialize speech synthesizer*/
-        speechSynth = [[NSSpeechSynthesizer alloc] initWithVoice:[NSSpeechSynthesizer defaultVoice]];
-        [speechSynth setDelegate:self];
+        speechSynth = speechSynthesizer;
         [speechSynth setRate:speechRate];
+        
+        //NSLog(@"%@",[NSSpeechSynthesizer availableVoices]);
         
         /*Separate words into array*/
         NSString *text = [[NSString alloc] initWithContentsOfFile:filePath encoding:4 error:NULL];
@@ -46,7 +47,7 @@
 -(void)startProcessing{
     [speechSynth startSpeakingString:@"Processing"];
 }
-- (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking{
+- (void)synthesizeFiles{
     NSMutableString *tempString = [[NSMutableString alloc] init];
     if (wordIndex<numberOfCycles) {
         NSLog(@"Started Synthesizing");
@@ -62,8 +63,7 @@
         synthesizeToFile(speechSynth, folderPath, outputFileName, wordIndex, tempString);
         NSLog(@"Finished Synthesizing: %@_%i",outputFileName,wordIndex);
         wordIndex++;  
-    }
-      
+    }      
 }
 
 

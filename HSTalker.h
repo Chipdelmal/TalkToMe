@@ -13,6 +13,7 @@
     int wordIndex;
     int numberOfCycles;
     int numberOfWords;
+    int remainingCycles;
     NSString *desktopPath;
     NSString *folderPath;
     NSString *outputFileName;
@@ -26,4 +27,7 @@
 -(void)startProcessing;
 -(void)synthesizeFiles;
 
+
+@property (readonly) int remainingCycles;
+@property (readonly) int numberOfCycles;
 @end

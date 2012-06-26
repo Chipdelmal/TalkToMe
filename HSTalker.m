@@ -9,6 +9,8 @@
 #import "HSTalker.h"
 
 @implementation HSTalker
+@synthesize remainingCycles;
+@synthesize numberOfCycles;
 
 -(id)init{
     return [self initWithContentsOfFile:NULL andOutputFileName:NULL andSpeechRate:0 andMinutesPerFile:0 andSpeechSynthesizer:NULL];
@@ -19,14 +21,13 @@
         /*Initialize speech synthesizer*/
         speechSynth = speechSynthesizer;
         [speechSynth setRate:speechRate];
-        
-        //NSLog(@"%@",[NSSpeechSynthesizer availableVoices]);
-        
+            
         /*Separate words into array*/
         NSString *text = [[NSString alloc] initWithContentsOfFile:filePath encoding:4 error:NULL];
         wordsArray = [text componentsSeparatedByString:@" "];
         numberOfWords = minutesPerFile*speechRate;
         numberOfCycles = ([wordsArray count]/numberOfWords)+1;
+        remainingCycles = numberOfCycles;
         wordIndex = 0;
         
         /*Get Desktop Path*/
@@ -45,9 +46,9 @@
 }
 
 -(void)startProcessing{
-    [speechSynth startSpeakingString:@"Processing"];
+    [speechSynth startSpeakingString:@" "];
 }
-- (void)synthesizeFiles{
+-(void)synthesizeFiles{
     NSMutableString *tempString = [[NSMutableString alloc] init];
     if (wordIndex<numberOfCycles) {
         NSLog(@"Started Synthesizing");
@@ -62,8 +63,9 @@
         }
         synthesizeToFile(speechSynth, folderPath, outputFileName, wordIndex, tempString);
         NSLog(@"Finished Synthesizing: %@_%i",outputFileName,wordIndex);
-        wordIndex++;  
-    }      
+        wordIndex++;
+        remainingCycles = remainingCycles-1;
+    }
 }
 
 
